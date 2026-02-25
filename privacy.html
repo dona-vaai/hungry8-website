@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Hungry8</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      line-height: 1.7;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 80px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+    .logo-ball {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #666 0%, #444 25%, #222 60%, #111 100%);
+      position: relative;
+      box-shadow: 0 4px 20px rgba(255, 138, 91, 0.4);
+    }
+    .logo-ball::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 8px;
+      width: 12px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.4) 0%, transparent 100%);
+    }
+    .logo-ball::after {
+      content: '8';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 50%, #1a237e 100%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 10px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-links { display: flex; gap: 40px; align-items: center; }
+    .nav-links a { color: #888; text-decoration: none; font-size: 15px; font-weight: 500; }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      background: #FF8A5B !important;
+      color: #0a0a0a !important;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 160px 40px 80px;
+    }
+    h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .updated {
+      color: #666;
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 40px 0 16px;
+      color: #FF8A5B;
+    }
+    p { color: #aaa; margin-bottom: 16px; }
+    ul { color: #aaa; margin-left: 24px; margin-bottom: 16px; }
+    li { margin-bottom: 8px; }
+    footer {
+      padding: 48px 80px;
+      background: #050505;
+      border-top: 1px solid #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-left { display: flex; align-items: center; gap: 48px; }
+    .footer-links { display: flex; gap: 32px; }
+    .footer-links a { color: #555; text-decoration: none; font-size: 14px; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { color: #333; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-ball"></div>
+      Hungry8
+    </a>
+    <div class="nav-links">
+      <a href="/how-it-works">How It Works</a>
+      <a href="/about">About</a>
+      <a href="/download" class="nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <div class="content">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: February 2025</p>
+
+    <p>At Hungry8, we take your privacy seriously. This policy explains how we collect, use, and protect your information.</p>
+
+    <h2>Information We Collect</h2>
+    <p>We collect minimal information to provide our service:</p>
+    <ul>
+      <li><strong>Location data:</strong> Used only to find nearby restaurants. We don't store your location history.</li>
+      <li><strong>Taste preferences:</strong> Your food preferences are stored locally on your device.</li>
+      <li><strong>Usage data:</strong> Anonymous analytics to improve the app experience.</li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <ul>
+      <li>To find restaurants near you</li>
+      <li>To personalize recommendations based on your taste profile</li>
+      <li>To improve our app and service</li>
+    </ul>
+
+    <h2>What We Don't Do</h2>
+    <ul>
+      <li>We don't sell your personal information</li>
+      <li>We don't share your data with advertisers</li>
+      <li>We don't track your location when the app is closed</li>
+    </ul>
+
+    <h2>Data Storage</h2>
+    <p>Your taste preferences are stored locally on your device. We use industry-standard security measures to protect any data transmitted to our servers.</p>
+
+    <h2>Third-Party Services</h2>
+    <p>We use Google Places API to provide restaurant information. Their privacy policy applies to data they collect.</p>
+
+    <h2>Contact Us</h2>
+    <p>Questions about this policy? Email us at <a href="mailto:privacy@hungry8.com" style="color: #FF8A5B;">privacy@hungry8.com</a></p>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <a href="/" class="logo">
+        <div class="logo-ball"></div>
+        Hungry8
+      </a>
+      <div class="footer-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 Hungry8. All rights reserved.</div>
+  </footer>
+</body>
+</html>
