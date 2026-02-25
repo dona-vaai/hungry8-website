@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440">
+  <title>How It Works - Hungry8</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #0a0a0a;
+      color: #fff;
+      width: 1440px;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 80px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: linear-gradient(180deg, rgba(10,10,10,0.98) 0%, rgba(10,10,10,0.9) 50%, rgba(10,10,10,0) 100%);
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 22px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+    }
+    
+    .logo-ball {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #666 0%, #444 25%, #222 60%, #111 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.1), 0 4px 20px rgba(255, 138, 91, 0.4);
+      position: relative;
+    }
+    
+    .logo-ball::after {
+      content: '8';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 50%, #1a237e 100%);
+      position: absolute;
+      font-size: 10px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: #888;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    
+    .nav-cta {
+      background: #FF8A5B;
+      color: #0a0a0a !important;
+      padding: 12px 24px;
+      border-radius: 100px;
+      font-weight: 600;
+    }
+    
+    .nav-cta:hover { background: #ff9d75 !important; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 160px 80px 100px;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(255,138,91,0.12) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+    
+    .hero h1 {
+      font-size: 72px;
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    
+    .hero p {
+      font-size: 22px;
+      color: #777;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    /* ===== STEPS ===== */
+    .steps {
+      padding: 60px 80px 120px;
+    }
+    
+    .step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+      padding: 100px 0;
+      position: relative;
+    }
+    
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #333, transparent);
+    }
+    
+    .step.reverse {
+      direction: rtl;
+    }
+    .step.reverse > * {
+      direction: ltr;
+    }
+    
+    .step-content {
+      max-width: 520px;
+    }
+    
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #FF8A5B;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+    
+    .step-number span {
+      width: 32px;
+      height: 32px;
+      background: rgba(255,138,91,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+    
+    .step-content h2 {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+    
+    .step-content p {
+      font-size: 19px;
+      color: #888;
+      line-height: 1.8;
+    }
+    
+    .step-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .step-visual::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,138,91,0.1) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    /* ===== PHONE MOCKUP ===== */
+    .phone-frame {
+      width: 300px;
+      height: 620px;
+      background: linear-gradient(145deg, #555 0%, #333 20%, #1a1a1a 80%, #111 100%);
+      border-radius: 48px;
+      padding: 10px;
+      box-shadow: 
+        0 60px 120px rgba(0,0,0,0.7),
+        0 0 0 3px rgba(255,255,255,0.15),
+        0 0 60px rgba(255,138,91,0.2),
+        inset 0 2px 0 rgba(255,255,255,0.25),
+        inset 0 -2px 0 rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 10;
+    }
+    
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 130px;
+      width: 4px;
+      height: 70px;
+      background: linear-gradient(180deg, #444 0%, #222 100%);
+      border-radius: 0 4px 4px 0;
+    }
+    
+    .phone-frame::after {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 110px;
+      width: 4px;
+      height: 35px;
+      background: linear-gradient(180deg, #444 0%, #222 100%);
+      border-radius: 4px 0 0 4px;
+      box-shadow: 0 55px 0 #333;
+    }
+    
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: #0a0a0a;
+      border-radius: 42px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid #222;
+    }
+    
+    .phone-notch {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 30px;
+      background: #000;
+      border-radius: 18px;
+      z-index: 10;
+    }
+    
+    .phone-notch::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 9px;
+      height: 9px;
+      background: radial-gradient(circle, #1a237e 0%, #0d1433 100%);
+      border-radius: 50%;
+    }
+
+    /* ===== APP SCREENS ===== */
+    .app-screen {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 16px 16px;
+    }
+    
+    /* --- SHAKE SCREEN --- */
+    .shake-screen {
+      background: linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
+    }
+    
+    .shake-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .shake-btn-group {
+      background: #1a1a1a;
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .shake-btn-filter {
+      background: linear-gradient(135deg, #FF8A5B 0%, #ff6b35 100%);
+      padding: 10px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #0a0a0a;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .shake-ball-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .magic-ball {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #4a4a4a 0%, #2a2a2a 30%, #0a0a0a 100%);
+      position: relative;
+      box-shadow: 
+        0 30px 60px rgba(0,0,0,0.5),
+        0 0 80px rgba(255,138,91,0.15),
+        inset 0 -20px 40px rgba(0,0,0,0.3);
+      animation: shake 4s ease-in-out infinite, glowBall 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes shake {
+      0%, 20%, 100% { transform: translateY(0) rotate(0deg); }
+      2% { transform: translateY(-3px) rotate(-2deg); }
+      4% { transform: translateY(2px) rotate(2deg); }
+      6% { transform: translateY(-3px) rotate(-1deg); }
+      8% { transform: translateY(2px) rotate(1deg); }
+      10% { transform: translateY(-2px) rotate(-1deg); }
+      12% { transform: translateY(0) rotate(0deg); }
+    }
+    
+    @keyframes glowBall {
+      0% { box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 80px rgba(255,138,91,0.15), inset 0 -20px 40px rgba(0,0,0,0.3); }
+      100% { box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 100px rgba(255,138,91,0.3), inset 0 -20px 40px rgba(0,0,0,0.3); }
+    }
+    
+    .magic-ball::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 22px;
+      width: 56px;
+      height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.25) 0%, transparent 100%);
+    }
+    
+    .magic-ball .ball-window {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #5c6bc0 0%, #3949ab 30%, #1a237e 70%, #0d1433 100%);
+      box-shadow: inset 0 2px 12px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
+    
+    .magic-ball .ball-eight {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      top: 150%;
+      opacity: 0;
+      animation: eightFloat 4s ease-in-out infinite;
+      animation-delay: 0.8s;
+    }
+    
+    @keyframes eightFloat {
+      /* Stay hidden during shake */
+      0%, 15% { 
+        top: 150%;
+        opacity: 0;
+      }
+      /* Float up after shake */
+      35% { 
+        top: 42%;
+        transform: translateY(-50%) rotate(-5deg);
+        opacity: 1;
+      }
+      42% { 
+        top: 55%;
+        transform: translateY(-50%) rotate(3deg);
+        opacity: 1;
+      }
+      50% { 
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg);
+        opacity: 1;
+      }
+      /* Stay completely still */
+      85% { 
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg);
+        opacity: 1;
+      }
+      /* Drop before next shake */
+      92%, 100% { 
+        top: 150%;
+        opacity: 0;
+      }
+    }
+    
+    .shake-glow {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,138,91,0.25) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+    }
+    
+    .shake-time {
+      margin-top: 30px;
+      text-align: center;
+    }
+    
+    .shake-time span {
+      color: #FFD93D;
+      font-size: 14px;
+    }
+    
+    .shake-time p {
+      color: #fff;
+      font-size: 16px;
+      margin-top: 4px;
+    }
+    
+    .shake-cta {
+      background: linear-gradient(135deg, #FF8A5B 0%, #ff6b35 100%);
+      color: #0a0a0a;
+      padding: 16px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      margin: 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .tab-bar {
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0 8px;
+      background: rgba(26,26,26,0.9);
+      border-radius: 20px;
+      margin-top: auto;
+    }
+    
+    .tab {
+      text-align: center;
+      font-size: 10px;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .tab.active { color: #FF8A5B; }
+    
+    .tab-icon {
+      font-size: 20px;
+    }
+    
+    .tab-8ball {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #FF8A5B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: #0a0a0a;
+    }
+
+    /* --- DIETARY SCREEN --- */
+    .dietary-screen {
+      background: linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
+    }
+    
+    .dietary-progress {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 40px;
+    }
+    
+    .dietary-progress span {
+      flex: 1;
+      height: 4px;
+      background: #333;
+      border-radius: 2px;
+    }
+    
+    .dietary-progress span.done {
+      background: #FF8A5B;
+    }
+    
+    .dietary-icon {
+      font-size: 56px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .dietary-title {
+      font-size: 24px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    
+    .dietary-sub {
+      font-size: 14px;
+      color: #666;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .dietary-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    
+    .dietary-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: #1a1a1a;
+      border-radius: 14px;
+      border: 2px solid transparent;
+    }
+    
+    .dietary-option.selected {
+      border-color: #FF8A5B;
+      background: rgba(255,138,91,0.1);
+    }
+    
+    .dietary-option-icon {
+      font-size: 24px;
+    }
+    
+    .dietary-option-text {
+      font-size: 15px;
+      font-weight: 500;
+    }
+    
+    .dietary-option-check {
+      margin-left: auto;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #444;
+    }
+    
+    .dietary-option.selected .dietary-option-check {
+      background: #FF8A5B;
+      border-color: #FF8A5B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .dietary-option.selected .dietary-option-check::after {
+      content: '✓';
+      color: #0a0a0a;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    
+    .dietary-continue {
+      background: linear-gradient(135deg, #FF8A5B 0%, #ff6b35 100%);
+      color: #0a0a0a;
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: auto;
+    }
+
+    /* --- RESULT SCREEN --- */
+    .result-screen {
+      background: linear-gradient(180deg, #0a0a0a 0%, #0d0d0d 100%);
+      padding: 60px 16px 20px;
+    }
+    
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    
+    .result-btn {
+      width: 40px;
+      height: 40px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    
+    .result-card {
+      background: #1a1a1a;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    
+    .result-image {
+      height: 160px;
+      background: linear-gradient(135deg, #333 0%, #222 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      position: relative;
+    }
+    
+    .result-match-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(255,138,91,0.9);
+      color: #0a0a0a;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    
+    .result-info {
+      padding: 20px;
+    }
+    
+    .result-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    
+    .result-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    
+    .result-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    
+    .result-tag {
+      background: #2a2a2a;
+      color: #aaa;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+    
+    .result-tag.highlight {
+      background: rgba(255,138,91,0.15);
+      color: #FF8A5B;
+    }
+    
+    .result-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    
+    .result-action {
+      padding: 16px;
+      border-radius: 14px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    
+    .result-action.primary {
+      background: linear-gradient(135deg, #FF8A5B 0%, #ff6b35 100%);
+      color: #0a0a0a;
+    }
+    
+    .result-action.secondary {
+      background: #1a1a1a;
+      color: #fff;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta {
+      padding: 140px 80px;
+      text-align: center;
+      background: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
+      position: relative;
+    }
+    
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(255,138,91,0.08) 0%, transparent 70%);
+    }
+    
+    .cta h2 {
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .cta-sub {
+      font-size: 20px;
+      color: #666;
+      margin-bottom: 48px;
+      position: relative;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 22px 44px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255,138,91,0.25);
+    }
+    
+    .btn.primary {
+      background: #FF8A5B;
+      color: #0a0a0a;
+    }
+    
+    .btn.secondary {
+      background: #1f1f1f;
+      color: #fff;
+    }
+    
+    .btn svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .btn.store-btn svg { width: 28px; height: 28px; }
+    .store-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.2;
+    }
+    .store-text small {
+      font-size: 11px;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 48px 80px;
+      background: #050505;
+      border-top: 1px solid #1a1a1a;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+    
+    .footer-links a {
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .footer-links a:hover { color: #fff; }
+    
+    .footer-copy {
+      color: #333;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-ball"></div>
+      Hungry8
+    </a>
+    <div class="nav-links">
+      <a href="#" class="active">How It Works</a>
+      <a href="about.html">About</a>
+      <a href="/download" class="nav-cta">Download</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>How Hungry8 Works</h1>
+    <p>Three simple steps to end the "where should we eat?" debate forever. No more endless scrolling or group arguments.</p>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps">
+    <!-- Step 1: Shake -->
+    <div class="step">
+      <div class="step-content">
+        <p class="step-number"><span>1</span> Shake to Decide</p>
+        <h2>Just shake your phone</h2>
+        <p>When you can't decide where to eat, give your phone a shake. The Magic 8-Ball spins and consults the food gods on your behalf. It's that simple — no overthinking, no endless scrolling, just fate picking your next meal.</p>
+      </div>
+      <div class="step-visual">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="app-screen shake-screen">
+              <div class="shake-header">
+                <div class="shake-btn-group"><svg style="width:14px;height:14px;vertical-align:middle;margin-right:4px" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="3" stroke="white" stroke-width="2"/><path d="M3 19v-1a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v1" stroke="white" stroke-width="2"/><circle cx="17" cy="7" r="2.5" stroke="white" stroke-width="2"/><path d="M21 19v-1a3 3 0 0 0-3-3h-.5" stroke="white" stroke-width="2"/></svg>Group</div>
+                <div class="shake-btn-filter"><svg style="width:14px;height:14px;vertical-align:middle;margin-right:2px" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="#FF8A5B" stroke-width="2"/><circle cx="8" cy="8" r="1.5" fill="#FF8A5B"/><circle cx="16" cy="8" r="1.5" fill="#FF8A5B"/><circle cx="8" cy="16" r="1.5" fill="#FF8A5B"/><circle cx="16" cy="16" r="1.5" fill="#FF8A5B"/><circle cx="12" cy="12" r="1.5" fill="#FF8A5B"/></svg> Any cuisine</div>
+              </div>
+              <div class="shake-ball-area">
+                <div style="position: relative;">
+                  <div class="shake-glow"></div>
+                  <div class="magic-ball">
+                    <div class="ball-window">
+                      <span class="ball-eight">8</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="shake-time">
+                  <span><svg style="width:14px;height:14px;vertical-align:middle;margin-right:4px" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" fill="#FF8A5B"/><path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#FF8A5B" stroke-width="2" stroke-linecap="round"/></svg>Lunch</span>
+                  <p>Shake or tap to decide!</p>
+                </div>
+              </div>
+              <div class="shake-cta"><svg style="width:18px;height:18px;vertical-align:middle;margin-right:6px" viewBox="0 0 24 24" fill="none"><rect x="8" y="4" width="8" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M5 8v8M19 8v8M2 10v4M22 10v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>SHAKE IT</div>
+              <div class="tab-bar">
+                <div class="tab active">
+                  <div class="tab-8ball">8</div>
+                  Shake
+                </div>
+                <div class="tab">
+                  <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#555"/><circle cx="12" cy="9" r="2.5" fill="#888"/></svg></span>
+                  Explore
+                </div>
+                <div class="tab">
+                  <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#555"/></svg></span>
+                  Saved
+                </div>
+                <div class="tab">
+                  <span class="tab-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#555"/></svg></span>
+                  Profile
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Taste Profile -->
+    <div class="step reverse">
+      <div class="step-content">
+        <p class="step-number"><span>2</span> Personalize It</p>
+        <h2>Set your taste profile</h2>
+        <p>Tell us what you love (and hate). Got dietary restrictions? Allergies? Hate cilantro? We remember everything so every suggestion is tailored to you — not some generic algorithm that doesn't know the difference.</p>
+      </div>
+      <div class="step-visual">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="app-screen dietary-screen">
+              <div class="dietary-progress">
+                <span class="done"></span>
+                <span class="done"></span>
+                <span class="done"></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="dietary-icon"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="15" rx="9" ry="5" stroke="#FF8A5B" stroke-width="2"/><path d="M8 13c0-3 2-5 4-5s4 2 4 5" stroke="#FF8A5B" stroke-width="2"/><path d="M12 8V5M9 10l-2-3M15 10l2-3" stroke="#FF8A5B" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <h3 class="dietary-title">Any dietary needs?</h3>
+              <p class="dietary-sub">Select all that apply</p>
+              <div class="dietary-options">
+                <div class="dietary-option selected">
+                  <span class="dietary-option-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22c-4-4-7-7-7-12a7 7 0 0 1 14 0c0 5-3 8-7 12z" stroke="#22c55e" stroke-width="2"/><path d="M12 22V12M9 15l3-3 3 3" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  <span class="dietary-option-text">Vegetarian</span>
+                  <div class="dietary-option-check"></div>
+                </div>
+                <div class="dietary-option">
+                  <span class="dietary-option-icon"><svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="5" ry="7" stroke="#FF8A5B" stroke-width="2"/><path d="M12 5v14" stroke="#FF8A5B" stroke-width="1.5"/><line x1="5" y1="5" x2="19" y2="19" stroke="#FF8A5B" stroke-width="2.5"/></svg></span>
+                  <span class="dietary-option-text">Nut Allergy</span>
+                  <div class="dietary-option-check"></div>
+                </div>
+                <div class="dietary-option selected">
+                  <span class="dietary-option-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 22v-6M12 16c-2-2-2-4 0-6M12 16c2-2 2-4 0-6M12 12c-2.5-1-3.5-3.5-1.5-5.5M12 12c2.5-1 3.5-3.5 1.5-5.5M12 8c-2 0-3.5-2-2.5-4M12 8c2 0 3.5-2 2.5-4" stroke="#FF8A5B" stroke-width="2" stroke-linecap="round"/></svg></span>
+                  <span class="dietary-option-text">Gluten-Free</span>
+                  <div class="dietary-option-check"></div>
+                </div>
+                <div class="dietary-option">
+                  <span class="dietary-option-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M8 2h8l2 5v13a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V7l2-5z" stroke="#FF8A5B" stroke-width="2"/><path d="M6 7h12" stroke="#FF8A5B" stroke-width="2"/></svg></span>
+                  <span class="dietary-option-text">Dairy-Free</span>
+                  <div class="dietary-option-check"></div>
+                </div>
+              </div>
+              <div class="dietary-continue">Continue</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Get Result -->
+    <div class="step">
+      <div class="step-content">
+        <p class="step-number"><span>3</span> Discover</p>
+        <h2>Get your perfect pick</h2>
+        <p>We find a restaurant that matches your taste, is open right now, and is close enough to actually get to. See the match score, check the vibe, and tap for directions. One shake, one pick, done.</p>
+      </div>
+      <div class="step-visual">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="phone-notch"></div>
+            <div class="app-screen result-screen">
+              <div class="result-header">
+                <div class="result-btn"><svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+                <div class="result-btn"><svg viewBox="0 0 24 24" fill="none" style="width:16px;height:16px"><path d="M7 17L17 7M17 7H7M17 7v10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
+              <div class="result-card">
+                <div class="result-image">
+                  🍕
+                  <div class="result-match-badge">94% Match</div>
+                </div>
+                <div class="result-info">
+                  <h4 class="result-name">Tony's Pizzeria</h4>
+                  <div class="result-meta">
+                    <span>Italian</span>
+                    <span>•</span>
+                    <span>$$</span>
+                    <span>•</span>
+                    <span>0.4 mi</span>
+                    <span>•</span>
+                    <span><svg viewBox="0 0 24 24" style="width:12px;height:12px;vertical-align:middle;margin-right:2px"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FF8A5B"/></svg>4.7</span>
+                  </div>
+                  <div class="result-tags">
+                    <span class="result-tag highlight"><svg viewBox="0 0 24 24" fill="none" style="width:12px;height:12px;vertical-align:middle;margin-right:3px"><path d="M12 20c-3-3-5-5-5-9a5 5 0 0 1 10 0c0 4-2 6-5 9z" fill="#22c55e"/></svg>Veggie options</span>
+                    <span class="result-tag">Open now</span>
+                    <span class="result-tag">Dine-in</span>
+                  </div>
+                </div>
+              </div>
+              <div class="result-actions">
+                <div class="result-action secondary"><svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;vertical-align:middle;margin-right:4px"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#FF8A5B"/></svg>Save</div>
+                <div class="result-action primary"><svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;vertical-align:middle;margin-right:4px"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor"/><circle cx="12" cy="9" r="2" fill="#0a0a0a"/></svg>Directions</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to shake things up?</h2>
+    <p class="cta-sub">Download free. No account required to try.</p>
+    <div class="cta-buttons">
+      <a href="#" class="btn primary store-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span class="store-text"><small>Download on the</small>App Store</span>
+      </a>
+      <a href="#" class="btn secondary store-btn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>
+        <span class="store-text"><small>Get it on</small>Google Play</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <a href="/" class="logo">
+        <div class="logo-ball"></div>
+        Hungry8
+      </a>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-copy">© 2025 Hungry8. All rights reserved.</div>
+  </footer>
+</body>
+</html>
